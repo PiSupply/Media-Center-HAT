@@ -120,6 +120,8 @@
 		          <&lirc_rpi>,"rpi,debug:0";
 		xohms =   <&rpidisplay_ts>,"ti,x-plate-ohms;0";
 		swapxy =  <&rpidisplay_ts>,"ti,swap-xy?";
+                backlight = <&rpidisplay>,"led-gpios:4",
+                            <&rpi_display_pins>,"brcm,pins:0";
 
 		gpio_out_pin =  <&lirc_pins>,"brcm,pins:0";
 		gpio_in_pin =   <&lirc_pins>,"brcm,pins:4";
