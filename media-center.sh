@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# run: sudo /bin/bash rpi-display.sh [0, 90, 180, 270]
-
+# run: sudo /bin/bash media-center.sh [0, 90, 180, 270]
+# forked from https://github.com/watterott/RPi-Display
 
 # ask y/n function
 function ask()
@@ -90,18 +90,18 @@ EOF
     fi
     if ! grep -q "fbtft_device" "/etc/modules"; then
       cat >> /etc/modules <<EOF
-fbtft_device name=rpi-display speed=32000000 rotate=$rotate
+fbtft_device name=media-center speed=32000000 rotate=$rotate
 EOF
     fi
 
   # Device Tree -> use FBTFT DT-Overlay
   else
-    if grep -q "dtoverlay=rpi-display" "/boot/config.txt"; then
-      sed -i 's/dtoverlay=rpi-display,speed=32000000,rotate=.*/dtoverlay=rpi-display,speed=32000000,rotate='$rotate'/g' "/boot/config.txt"
+    if grep -q "dtoverlay=media-center" "/boot/config.txt"; then
+      sed -i 's/dtoverlay=media-center,speed=32000000,rotate=.*/dtoverlay=media-center,speed=32000000,rotate='$rotate'/g' "/boot/config.txt"
     else
       cat >> /boot/config.txt <<EOF
 
-dtoverlay=rpi-display,speed=32000000,rotate=$rotate
+dtoverlay=media-center,speed=32000000,rotate=$rotate
 EOF
     fi
   fi
