@@ -1,9 +1,10 @@
 //============================================================================
 // Name        : lcdlevel.cpp
-// Author      : Friedemann Wolpert
+// Author      : Friedemann Wolpert and Aaron Shaw
 // Version     : 1.0.0
+// Forked from : https://github.com/watterott/RPi-Display/blob/master/docs/lcdlevel.cpp
 // Copyright   : All Rights Reversed, based on wiringPi / Pi-blaster
-// Description : Backlight control for Watterott RPi Display (Soft PWM Pin 18)
+// Description : Backlight control for Media Center HAT (Soft PWM Pin 12)
 // Building :
 //   * Install WiringPi: http://wiringpi.com/download-and-install/
 //   * Compile: cc -o lcdlevel lcdlevel.cpp -lwiringPi -lpthread
@@ -110,7 +111,7 @@ int main(int argc, char **argv)
 
   printf("CreateSoftPWM: %i\n", lcdlevel);
 
-  softPwmCreate(18, lcdlevel, 100);
+  softPwmCreate(12, lcdlevel, 100);
 
   // Read Brightness from file
   parseDevFileLoop();
@@ -151,7 +152,7 @@ static void parseDevFileLoop(void)
     if ( (value >= 0)  && (value <= 100 ))
     {
       lcdlevel=value;
-      softPwmWrite(18, lcdlevel);
+      softPwmWrite(12, lcdlevel);
     }
   }
 }
