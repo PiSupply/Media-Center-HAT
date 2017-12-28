@@ -7,6 +7,7 @@
 # Default-Stop:      0 1 6
 # Short-Description: Framebuffer copy daemon fb0->fb1
 ### END INIT INFO
+# forked from https://github.com/watterott/RPi-Display
 # Author: Noralf Tronnes <notro@tronnes.org>
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Framebuffer copy daemon"
