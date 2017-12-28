@@ -2,11 +2,18 @@
 Resources for the Media Center HAT
 
 # Set Up Media Center HAT
+## Auto Installation
 Just run the following script in a terminal window and the Media Center HAT will be automatically setup.
 ```bash
 # Run this line and the Media Center HAT will be setup and installed
 curl -sSL https://pisupp.ly/mediacentersoftware | sudo bash
 ```
+
+ADD NOTES ABOUT HOW TO NAVIGATE AUTO INSTALLER? OR AUTO-CONFIG WITH DEFAULTS?
+
+## Manual Installation
+
+ADD CONTENT
 
 ## Notes
 
