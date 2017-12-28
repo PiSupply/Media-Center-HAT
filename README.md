@@ -9,3 +9,12 @@ enable device tree in config.txt by putting SD into PC, adding two lines:
 
 dtoverlay=lirc-rpi,gpio_in_pin=5,gpio_out_pin=6
 dtoverlay=rpi-display,speed=32000000,rotate=90
+
+# Thank you!
+
+This software and product is based on and uses a number of open source libraries and we wanted to thank the creators here. This product wouldn't be possible without their efforts!
+
+- [Notro FBTFT](https://github.com/notro/fbtft/wiki)
+- [Watterott RPi-Display](https://github.com/watterott/RPi-Display)
+- [Wiring Pi](http://wiringpi.com/)
+- [Lirc](http://www.lirc.org/)
