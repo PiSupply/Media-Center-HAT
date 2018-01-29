@@ -11,21 +11,6 @@ curl -sSL https://pisupp.ly/mediacentersoftware | sudo bash
 
 ADD NOTES ABOUT HOW TO NAVIGATE AUTO INSTALLER? OR AUTO-CONFIG WITH DEFAULTS?
 
-## Manual Installation
-
-ADD CONTENT
-
-## Notes
-
-It is possible that eeprom is not programmed, or is programmed with different dt than does not match gpio sel jumper default configuration which is 12.
-EEPROM shoud be programmed using dtbo for gpio12 file from drive. They can try to switch gpio sel jumper to position 18 and see if it works. If not they can try to
-enable device tree in config.txt by putting SD into PC, adding two lines:
-
-dtoverlay=lirc-rpi,gpio_in_pin=5,gpio_out_pin=6
-dtoverlay=rpi-display,speed=32000000,rotate=90
-
-No additional pullups and resistors on bord for buttons/joystick/encoder, just ones enabled at gpio rpi ports. It should be configured as pullups for these, because button on schematic is connected to gnd. Placing additional resistors may constrain to use that gpios for other gpio functions like LEDs or some other output control...so we decided to omit these from the design, to make it more useful in a wider array of use cases. Because of this, you can use the button inputs to just connect to the various GPIO pins for other purposes as well.
-
 # Thank you!
 
 This software and product is based on and uses a number of open source libraries and we wanted to thank the creators here. This product wouldn't be possible without their efforts!
