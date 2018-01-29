@@ -162,10 +162,10 @@ B1
 
 The picture above highlights the main ICs used on PiJuice. Links to the various datasheets have been provided in line with the description.
 
-1. **MI0283QT** [S](https://github.com/) desc
-2. **ADS7846** [S](https://github.com/) desc
-3. **TSOP75238W** [S](https://github.com/) desc
-4. **CAT24C32** [S](https://github.com/) desc
+1. **Display** [MI0283QT](https://github.com/PiSupply/Media-Center-HAT/blob/master/Hardware/Datasheets/MI0283QT-11_Ver1.4.pdf) 2.8" TFT Display(320x240)with Touchpanel.
+2. **Touch screen controller** [ADS7846](https://github.com/PiSupply/Media-Center-HAT/blob/master/Hardware/Datasheets/ads7846.pdf) 4-wire touch screen controller.
+3. **IR Rcv Module** [TSOP75238W](https://github.com/PiSupply/Media-Center-HAT/blob/master/Hardware/Datasheets/TSOP75238W.pdf) miniaturised SMD IR receiver for infrared remote control systems.
+4. **EEPROM** [CAT24C32](https://github.com/PiSupply/Media-Center-HAT/blob/master/Hardware/Datasheets/CAT24C32-D.PDF)  EEPROM, I2C, 32KBIT, 400KHZ, 1V7-5V5
 
 ### Unpopulated
 
