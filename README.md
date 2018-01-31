@@ -1,3 +1,4 @@
+![Media Center HAT Logo](https://user-images.githubusercontent.com/16068311/35614771-0edeffce-0668-11e8-824d-59421747a844.png?raw=true "Media Center HAT Logo")
 # Media Center HAT
 Resources for the Media Center HAT
 

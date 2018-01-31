@@ -1,5 +1,7 @@
 # Hardware
 
+ 
+
 ## Switches
 
 ### Buttons
@@ -39,7 +41,7 @@
     * **2-4** Internal IR LED
     * **4-6** External IR LED
 * **J4** ID EEPROM write protect disable jumper. Short to write to EEPROM.
-* **J5** Backlight control GPIO selection jumper, GPIO18(PI12) or GPIO12(PI32).
+* **J5** Backlight control GPIO selection jumper, GPIO18(PI12) or GPIO12(PI32). The GPIO controlling the backlight defaults to GPIO12 so that the MCH can be used in conjuction with an audio board using I2S like in the case of JustBoom Audio, HiFiBerry, iQaudio, etc.
 * **J6** Change ID EEPROM address from 0x50 to 0x51. Short or install a 2 pin header with a jumper to change address to 0x51.
 
 ## Pinout
@@ -154,6 +156,15 @@ B1
 ------------------
 ```
 
+#### TP Pinout
+```text
+TP
+------------------------------------------------------------------------------------------------------------
+| 1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16    17    18  |
+|GND   5V    3V3   MOSI  MISO  SCK LCD_CS SEN_CS PI12 PI16  PI18  PI29  PI31 ID_SCL ID_SDA EWP  PI22  PI32 |
+------------------------------------------------------------------------------------------------------------
+```
+
 ## Components
 
 ### Main active components
@@ -171,24 +182,7 @@ The picture above highlights the main ICs used on PiJuice. Links to the various 
 
 You may notice that there are several components which have not be installed on your board. This section aims to explain what they are and which are for user customisation.
 
-* **TP1** GND
-* **TP2** 5V
-* **TP3** 3V3
-* **TP4** MOSI
-* **TP5** MISO
-* **TP6** SCK
-* **TP7** LCD_CS
-* **TP8** SEN_CS
-* **TP9** GPIO18(PI12)
-* **TP10** GPIO23(PI16)
-* **TP11** GPIO24(PI18)
-* **TP12** GPIO5(PI29) / IR Input Receiver
-* **TP13** GPIO6(PI31) / IR Output Transmitter
-* **TP14** ID_SCL(PI28)
-* **TP15** ID_SDA(PI27)
-* **TP16** EEPROM Write Protect
-* **TP17** GPIO25(PI22) / PENIRQ (touch controller interrupt signal)
-* **TP18** GPIO12(PI32)
+* **TPx** these are all test points used to test the boards during manufacturing. Refer to the pinout above for more information.
 
 * **R20** this is hardware configuration of reference input to touch interface chip. This is not important to users. How would use this, if necessary?
 
