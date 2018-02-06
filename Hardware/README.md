@@ -60,8 +60,6 @@ P1
 o Available
 + Can be reused
 
-3 I2C_SDA to MCU
-5 I2C_SCL to MCU
 11 SW1
 12 Backlight control
 13 SW5
