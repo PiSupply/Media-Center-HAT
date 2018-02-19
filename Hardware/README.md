@@ -1,6 +1,5 @@
 # Hardware
-
- 
+![MCH_Overview](https://user-images.githubusercontent.com/16068311/36383426-06daa938-1584-11e8-9adc-f9e1125aa10d.png "MCH Overview")
 
 ## Switches
 
@@ -167,7 +166,7 @@ TP
 
 ### Main active components
 
-![Main ICs](https://user-images.githubusercontent.com/ "Main ICs")
+![Main ICs](https://user-images.githubusercontent.com/16068311/36383446-10b64c82-1584-11e8-9f4b-33c080356dd0.png "Main ICs")
 
 The picture above highlights the main ICs used on PiJuice. Links to the various datasheets have been provided in line with the description.
 
