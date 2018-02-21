@@ -1,14 +1,184 @@
 # Media Centre HAT Software
 
 ## Software Installation
+
+*Note that the overlays needed for the MCH are only available as of Kernel 4.9.79. Before continuing with the installation make sure you are at the right kernel level*
+*You can update to the right version by:*
+```bash
+sudo apt-get update && sudo apt-get upgrade
+sudo rpi-update 5c80565c5c0c7f820258c792a98b56f22db2dd03
+```
+
+This update will provide the dtoverlay media-center and also add the dtoverlay gpio-key which enables the mapping of keyboard functions to the onboard buttons and joystick.
+
+After the update is finished you can reboot and proceed with the rest of the installation.
+
+If you need to run your system without updating as shown above please follow [these steps](https://github.com/PiSupply/Media-Center-HAT/tree/master/Software#additional-steps-for-older-kernels).
+
 ### Automated process
+
 Just run the following script in a terminal window and the Media Center HAT will be automatically setup.
 ```bash
 # Run this line and the Media Center HAT will be setup and installed
 curl -sSL https://pisupp.ly/mediacentersoftware | sudo bash
 ```
 
+alternatively from the command line:
+
+```bash
+git clone https://github.com/PiSupply/Media-Center-HAT.git
+```
+
+then:
+```bash
+sudo Media-Centre-HAT/Software/media-center.sh 0
+```
+Use:
+* **0** for portrait (SD Card side)
+* **90** for landscape (HDMI side)
+* **180** for portrait (USB side)
+* **270** for landscape (GPIO side)
+
+#### TFT driver
+```text
+Enable TFT display driver and activate X windows on TFT display? y/n
+```
+Reply with "Y"
+```text
+--- Updating /boot/config.txt ---
+
+Please reboot the system after the installation.
+
+--- Updating /etc/X11/xorg.conf.d ---
+
+startx -- -layout TFT
+startx -- -layout HDMI
+startx -- -layout HDMITFT
+When -layout is not set, the first is used: TFT
+```
+
+```text
+Activate the console on the TFT display? y/n
+```
+Reply with "Y"
+
+#### Framebuffer (fbcp)
+```text
+Install fbcp (Framebuffer Copy)? y/n
+```
+Reply with "Y"
+
+```text
+To enable automatic startup of fbcp run:
+sudo update-rc.d fbcp defaults
+To disable automatic startup of fbcp run:
+sudo update-rc.d fbcp remove
+```
+
+```text
+Enable automatic startup of fbcp on boot? y/n
+```
+Reply with "Y"
+
+```text
+Note: The console output on the TFT display will be disabled.
+Set screen blanking time to 10 minutes.
+```
+
+#### xinput-calibrator
+```text
+Install xinput-calibrator? y/n
+```
+Reply with "Y"
+
+#### Touchscreen library
+```text
+Install tslib (touchscreen library)? y/n
+```
+Reply with "N"
+
+Finally reboot the system.
+
 ### Manual process
+
+#### Configure dtoverlay for the buttons
+
+The default configuration for the buttons and the joystick is to map to the arrow keys and to the enter key. Should you wish to alter the mapping you can change the mapping in `/boot/config.txt`
+
+By default if you have enabled the joystick during install you should find the following:
+```text
+dtoverlay=gpio-key,gpio=13,keycode=103,label="KEY_UP"
+dtoverlay=gpio-key,gpio=17,keycode=105,label="KEY_LEFT"
+dtoverlay=gpio-key,gpio=22,keycode=108,label="KEY_DOWN"
+dtoverlay=gpio-key,gpio=26,keycode=106,label="KEY_RIGHT"
+dtoverlay=gpio-key,gpio=27,keycode=28,label="KEY_ENTER"
+```
+
+you can change the keycode and the label according to the [input-event-codes.h](https://github.com/torvalds/linux/blob/v4.12/include/uapi/linux/input-event-codes.h)
+
+You can also temporarily konfigure the keys at runtime without needing to alter the main configuration file by running a command like:
+
+```bash
+sudo dtoverlay gpio-key gpio=13 keycode=59 label="KEY_F1"
+```
+
+This will map GPIO13 to the F1 key of the keuboard.
+
+*Note that should you wish to use buttons which are wired in a different way than the ones we provided on the MCH you will need to take in consideration that you will need to use the `gpio_pull` option on the command you run. The default pull=2 is safer, of course, otherwise the line will float which may cause spurious readings. We use gpio_pull=0 because the MCH has hardware pullups and won't need to use the Raspberry Pi ones.*
+
+*Example `sudo dtoverlay gpio-key gpio=21 keycode=4 label="KEY_4" gpio_pull=0` 2:up 1:down 0:none*
+
+### Additional steps for older kernels
+
+Should you not wish to update bare in mind that the installation will still enable the screen but with a default rotation of 90° despite running `sudo Media-Centre-HAT/Software/media-center.sh 0`.
+In order to compensate this behaviour you will also need to change the installation script so that the touchscreen is not affected by this.
+
+Change the `function update_xorg()` function in `Media-Centre-HAT/Software/media-center.sh` to
+
+```text
+  if [ "${rotate}" == "0" ]; then
+    invertx="1"
+    inverty="0"
+    swapaxes="1"
+    tmatrix="0 -1 1 1 0 0 0 0 1"
+  fi
+  if [ "${rotate}" == "90" ]; then
+    invertx="1"
+    inverty="1"
+    swapaxes="0"
+    tmatrix="-1 0 1 0 -1 1 0 0 1"
+  fi
+  if [ "${rotate}" == "180" ]; then
+    invertx="0"
+    inverty="1"
+    swapaxes="1"
+    tmatrix="0 1 0 -1 0 1 0 0 1"
+  fi
+  if [ "${rotate}" == "270" ]; then
+    invertx="0"
+    inverty="0"
+    swapaxes="0"
+    tmatrix="1 0 0 0 1 0 0 0 1"
+  fi
+```  
+
+## Touchscreen calibration
+
+You can launch the xinput_calibrator directly via the GUI:
+
+![xinput_calibration](https://user-images.githubusercontent.com/16068311/36484231-77d98194-1710-11e8-8dc9-caaf13e0bd40.png "xinput_calibration")
+
+or from a terminal within the GUI by running:
+```bash
+xinput_calibrator
+```
+
+or from an SSH session:
+
+```bash
+DISPLAY=:0 xinput_calibrator
+```
+
 
 ## LIRC configuration
 
