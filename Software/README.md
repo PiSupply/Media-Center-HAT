@@ -131,7 +131,27 @@ You can also temporarily konfigure the keys at runtime without needing to alter 
 sudo dtoverlay gpio-key gpio=13 keycode=59 label="KEY_F1"
 ```
 
-This will map GPIO13 to the F1 key of the keuboard.
+This will map GPIO13 to the F1 key of the keyboard.
+
+You can check that the mapping is what you expect by using the command line tool `evtest`. Simply install it via `apt-get install evtest` and run it. You will be prompted with something similar to:
+
+```text
+No device specified, trying to scan all of /dev/input/event*
+Not running as root, no devices may be available.
+Available devices:
+/dev/input/event0:      1b.button
+/dev/input/event1:      1a.button
+/dev/input/event2:      16.button
+/dev/input/event3:      11.button
+/dev/input/event4:      d.button
+/dev/input/event5:      ADS7846 Touchscreen
+Select the device event number [0-5]:
+``` 
+In the case above the first 5 events are registered to each of the buttons.
+1b for example is associated with GPIO 27. 0x1B is 27 in decimal, 0x1A is 26 and so on.
+
+You can test each button by choosing the corresponding event from the list.
+Press CTRL^C to terminate.
 
 *Note that should you wish to use buttons which are wired in a different way than the ones we provided on the MCH you will need to take in consideration that you will need to use the `gpio_pull` option on the command you run. The default pull=2 is safer, of course, otherwise the line will float which may cause spurious readings. We use gpio_pull=0 because the MCH has hardware pullups and won't need to use the Raspberry Pi ones.*
 

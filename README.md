@@ -10,7 +10,7 @@ Just run the following script in a terminal window and the Media Center HAT will
 curl -sSL https://pisupp.ly/mediacentersoftware | sudo bash
 ```
 
-ADD NOTES ABOUT HOW TO NAVIGATE AUTO INSTALLER? OR AUTO-CONFIG WITH DEFAULTS?
+Please check the [software](https://github.com/PiSupply/Media-Center-HAT/blob/master/Software) or the [Hardware](https://github.com/PiSupply/Media-Center-HAT/blob/master/Hardware) sections for further information. 
 
 # Thank you!
 
