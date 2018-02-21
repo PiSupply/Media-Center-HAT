@@ -107,7 +107,6 @@ EOF
   fi
 }
 
-
 # update xorg.conf
 function update_xorg()
 {
@@ -386,6 +385,30 @@ function calibrate_touchpanel()
   #DISPLAY=:0 xinput_calibrator --device "ADS7846 Touchscreen" --output-type xinput
 }
 
+# configure onboard Joystick and Buttons to arrow keys and enter key
+function update_configtxt_joy()
+{
+  echo "--- Configuring Joystick/Buttons ---"
+  echo
+
+  # Device Tree -> use GPIO-Key DT-Overlay
+  if grep -q "dtoverlay=gpio-key" "/boot/config.txt"; then
+    sed -i 's/dtoverlay=gpio-key,gpio=13,keycode=.*/dtoverlay=gpio-key,gpio=13,keycode=103,label="KEY_UP"/g' "/boot/config.txt"
+    sed -i 's/dtoverlay=gpio-key,gpio=17,keycode=.*/dtoverlay=gpio-key,gpio=17,keycode=105,label="KEY_LEFT"/g' "/boot/config.txt"
+    sed -i 's/dtoverlay=gpio-key,gpio=22,keycode=.*/dtoverlay=gpio-key,gpio=22,keycode=108,label="KEY_DOWN"/g' "/boot/config.txt"
+    sed -i 's/dtoverlay=gpio-key,gpio=26,keycode=.*/dtoverlay=gpio-key,gpio=26,keycode=106,label="KEY_RIGHT"/g' "/boot/config.txt"
+    sed -i 's/dtoverlay=gpio-key,gpio=27,keycode=.*/dtoverlay=gpio-key,gpio=27,keycode=28,label="KEY_ENTER"/g' "/boot/config.txt"
+  else
+    cat >> /boot/config.txt <<EOF
+dtoverlay=gpio-key,gpio=13,keycode=103,label="KEY_UP"
+dtoverlay=gpio-key,gpio=17,keycode=105,label="KEY_LEFT"
+dtoverlay=gpio-key,gpio=22,keycode=108,label="KEY_DOWN"
+dtoverlay=gpio-key,gpio=26,keycode=106,label="KEY_RIGHT"
+dtoverlay=gpio-key,gpio=27,keycode=28,label="KEY_ENTER"
+EOF
+
+  fi
+}
 
 # main function
 if [ $EUID -ne 0 ]; then
@@ -470,6 +493,10 @@ if [ -f "/usr/bin/ts_calibrate" ]; then
   if ask "Calibrate the touchpanel now?"; then
     calibrate_touchpanel
   fi
+fi
+
+if ask "Enable onboard Joystick/Buttons?"; then
+  update_configtxt_joy
 fi
 
 if ask "Reboot the system now?"; then

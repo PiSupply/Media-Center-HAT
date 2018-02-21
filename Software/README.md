@@ -101,6 +101,15 @@ Finally reboot the system.
 
 ### Manual process
 
+#### Changing the screen orientation
+If you wish to change the screen orientation without running the installation script you can change the following line in `/boot/config.txt`:
+
+```text
+dtoverlay=media-center,speed=32000000,rotate=0
+```
+
+and change rotate to 0, 90, 180 or 270.
+
 #### Configure dtoverlay for the buttons
 
 The default configuration for the buttons and the joystick is to map to the arrow keys and to the enter key. Should you wish to alter the mapping you can change the mapping in `/boot/config.txt`
@@ -194,7 +203,9 @@ Then edit `/etc/lirc/lirc_options.conf` and change:
 driver  = devinput
 device  = auto
 ```
-to
+
+to:
+
 ```text
 driver  = default
 device  = /dev/lirc0
