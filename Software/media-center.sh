@@ -16,6 +16,16 @@ function ask()
   done
 }
 
+# get scren rotation
+function screen_rotation()
+{
+        echo "Select one of the options below:"
+        echo "[0] - Portrait"
+        echo "[90] - Horizontal (Default)"
+        echo "[180] - Portrait Reverse"
+        echo "[270] - Horizontal Reverse"
+read rotate_val
+}
 
 # reboot system
 function reboot_system()
@@ -416,12 +426,13 @@ if [ $EUID -ne 0 ]; then
   exit 1
 fi
 
-rotate="$1"
+screen_rotation
+rotate="$rotate_val"
 dt_found="0"
 fbtft_found="0"
 
 if [ "${rotate}" != "0" ] && [ "${rotate}" != "90" ] && [ "${rotate}" != "180" ] && [ "${rotate}" != "270" ]; then
-  echo "Usage: sudo bash $0 [0, 90, 180 or 270]"
+  echo "Incorrect value, select: [0, 90, 180 or 270]"
   exit 1
 fi
 

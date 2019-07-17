@@ -31,7 +31,7 @@ git clone https://github.com/PiSupply/Media-Center-HAT.git
 
 then:
 ```bash
-sudo Media-Centre-HAT/Software/media-center.sh 0
+sudo Media-Centre-HAT/Software/media-center.sh
 ```
 Use:
 * **0** for portrait (SD Card side)
@@ -146,7 +146,7 @@ Available devices:
 /dev/input/event4:      d.button
 /dev/input/event5:      ADS7846 Touchscreen
 Select the device event number [0-5]:
-``` 
+```
 In the case above the first 5 events are registered to each of the buttons.
 1b for example is associated with GPIO 27. 0x1B is 27 in decimal, 0x1A is 26 and so on.
 
@@ -255,7 +255,7 @@ pulse 577
 space 559
 pulse 571
 ```
- 
+
 You can now proceed to record the configuration of the IR remote you wish to use or use our default ones:
 * MCH-1.lircd.conf
 * MCH-2.lircd.conf
@@ -281,7 +281,7 @@ Once done you will have to copy it to sudo `/etc/lirc/`
 
 ```bash
 sudo cp ~/NEW-REMOTE.lircd.conf /etc/lirc/lircd.conf
-``` 
+```
 Restart the service to get the new configuration running.
 
 ### User the MCH as a remote
@@ -388,5 +388,3 @@ dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=17d7977b-
 004897.205: vchiq_core: vchiq_init_state: slot_zero = 0xfad80000, is_master = 1
 004906.638: TV service:host side not connected, dropping notification 0x00000002, 0x00000002, 0x00000009
 ```
-
-
