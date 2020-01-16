@@ -327,10 +327,7 @@ function install_xinputcalibrator()
   echo "Run 'sudo startx' to calibrate the touchscreen for X."
   echo
 
-  cd /tmp
-  curl -k -L -o xinput-calibrator_0.7.5-1_armhf.deb http://tronnes.org/downloads/xinput-calibrator_0.7.5-1_armhf.deb
-  dpkg -i -B xinput-calibrator_0.7.5-1_armhf.deb
-  rm xinput-calibrator_0.7.5-1_armhf.deb
+  apt-get install --no-install-recommends -y xinput-calibrator
 
   cat > /etc/X11/Xsession.d/xinput_calibrator_pointercal <<'EOF'
 #!/bin/sh
