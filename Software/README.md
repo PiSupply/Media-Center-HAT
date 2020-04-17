@@ -2,48 +2,32 @@
 
 ## Software Installation
 
-*Note that the overlays needed for the MCH are only available as of Kernel 4.9.79. Before continuing with the installation make sure you are at the right kernel level*
-*You can update to the right version by:*
-```bash
-sudo apt-get update && sudo apt-get upgrade
-sudo rpi-update 5c80565c5c0c7f820258c792a98b56f22db2dd03
-```
-
-This update will provide the dtoverlay media-center and also add the dtoverlay gpio-key which enables the mapping of keyboard functions to the onboard buttons and joystick.
-
-After the update is finished you can reboot and proceed with the rest of the installation.
-
-If you need to run your system without updating as shown above please follow [these steps](https://github.com/PiSupply/Media-Center-HAT/tree/master/Software#additional-steps-for-older-kernels).
-
 ### Automated process
 
 Just run the following script in a terminal window and the Media Center HAT will be automatically setup.
 ```bash
 # Run this line and the Media Center HAT will be setup and installed
-curl -sSL https://pisupp.ly/mediacentersoftware | sudo bash
+sudo su -c "bash <(wget -qO- https://pisupp.ly/mediacentersoftware)" root
 ```
 
 alternatively from the command line:
 
 ```bash
 git clone https://github.com/PiSupply/Media-Center-HAT.git
+sudo bash Media-Centre-HAT/Software/install.sh
 ```
 
-then:
-```bash
-sudo Media-Centre-HAT/Software/media-center.sh
-```
-Use:
-* **0** for portrait (SD Card side)
-* **90** for landscape (HDMI side)
-* **180** for portrait (USB side)
-* **270** for landscape (GPIO side)
-
-#### TFT driver
+#### Screen Orientation
 ```text
-Enable TFT display driver and activate X windows on TFT display? y/n
+Select one of the options below:
+[0] - Portrait
+[90] - Horizontal (Default)
+[180] - Portrait Reverse
+[270] - Horizontal Reverse
 ```
-Reply with "Y"
+Reply with one of the following values: 0, 90, 180, 270
+
+#### TFT Driver
 ```text
 --- Updating /boot/config.txt ---
 
@@ -51,12 +35,13 @@ Please reboot the system after the installation.
 
 --- Updating /etc/X11/xorg.conf.d ---
 
-startx -- -layout TFT
-startx -- -layout HDMI
-startx -- -layout HDMITFT
+-layout TFT
+-layout HDMI
+-layout HDMITFT
 When -layout is not set, the first is used: TFT
 ```
 
+#### Console
 ```text
 Activate the console on the TFT display? y/n
 ```
@@ -91,13 +76,24 @@ Install xinput-calibrator? y/n
 ```
 Reply with "Y"
 
-#### Touchscreen library
+#### Joystick/buttons
 ```text
-Install tslib (touchscreen library)? y/n
+Enable onboard Joystick/Buttons? y/n
 ```
-Reply with "N"
+Reply with "Y"
 
-Finally reboot the system.
+#### MCH IR Remote
+```text
+Configure MCH IR Remote? y/n
+```
+Reply with "Y"
+
+#### Reboot
+```text
+Reboot the system now? y/n
+```
+Reply with "Y"
+
 
 ### Manual process
 
@@ -109,6 +105,168 @@ dtoverlay=media-center,speed=32000000,rotate=0
 ```
 
 and change rotate to 0, 90, 180 or 270.
+
+#### Configure video driver
+fbdev is an Xorg driver for framebuffer devices. You need to edit the file `/usr/share/X11/xorg.conf.d` and add the following:
+```text
+Section "ServerLayout"
+    Identifier "TFT"
+    Option "BlankTime" "10"
+    Screen 0 "ScreenTFT"
+EndSection
+
+Section "ServerLayout"
+    Identifier "HDMI"
+    Option "BlankTime" "10"
+    Screen 0 "ScreenHDMI"
+EndSection
+
+Section "ServerLayout"
+    Identifier "HDMITFT"
+    Option "BlankTime" "10"
+    Screen 0 "ScreenHDMI"
+    Screen 1 "ScreenTFT" RightOf "ScreenHDMI"
+#   Screen 1 "ScreenTFT" LeftOf "ScreenHDMI"
+#   Screen 1 "ScreenTFT" Above "ScreenHDMI"
+#   Screen 1 "ScreenTFT" Below "ScreenHDMI"
+#   Screen 1 "ScreenTFT" Relative "ScreenHDMI" x y
+#   Screen 1 "ScreenTFT" Absolute x y
+EndSection
+
+Section "Screen"
+    Identifier "ScreenHDMI"
+    Monitor "MonitorHDMI"
+    Device "DeviceHDMI"
+Endsection
+
+Section "Screen"
+    Identifier "ScreenTFT"
+    Monitor "MonitorTFT"
+    Device "DeviceTFT"
+Endsection
+
+Section "Monitor"
+    Identifier "MonitorHDMI"
+Endsection
+
+Section "Monitor"
+    Identifier "MonitorTFT"
+Endsection
+
+Section "Device"
+    Identifier "DeviceHDMI"
+    Driver "fbturbo"
+    Option "fbdev" "/dev/fb0"
+    Option "SwapbuffersWait" "true"
+EndSection
+
+Section "Device"
+    Identifier "DeviceTFT"
+    Driver "fbturbo"
+    Option "fbdev" "/dev/fb1"
+EndSection
+EOF
+```
+#### Touchscreen configuration
+Edit the file `/usr/share/X11/xorg.conf.d/99-ads7846-cal.conf` and add the following:
+```text
+Section "InputClass"
+  Identifier "calibration"
+  MatchProduct "ADS7846 Touchscreen"
+  Option "EmulateThirdButton" "1"
+  Option "EmulateThirdButtonButton" "3"
+  Option "EmulateThirdButtonTimeout" "1500"
+  Option "EmulateThirdButtonMoveThreshold" "30"
+  Option "InvertX" "$invertx"
+  Option "InvertY" "$inverty"
+  Option "SwapAxes" "$swapaxes"
+  Option "TransformationMatrix" "$tmatrix"
+EndSection
+EOF
+```
+Where $invertx, inverty, $swapaxes and $tmatrix is replace with one of the following values depending on the screen orientation:
+```text
+0 degrees (Portrait)
+invertx="0"
+inverty="0"
+swapaxes="0"
+tmatrix="1 0 0 0 1 0 0 0 1"
+
+90 degrees (Horizontal (Default))
+invertx="1"
+inverty="0"
+swapaxes="1"
+tmatrix="0 -1 1 1 0 0 0 0 1"
+
+180 degrees (Portrait reverse)
+invertx="1"
+inverty="1"
+swapaxes="0"
+tmatrix="-1 0 1 0 -1 1 0 0 1"
+
+270 degrees (Horizontal reverse)
+invertx="0"
+inverty="1"
+swapaxes="1"
+tmatrix="0 1 0 -1 0 1 0 0 1"
+```
+
+#### Install Xinput Calibrator
+Xinput calibrator can be used to fine tune the touchscreen calibration for the screen.
+
+```bash
+sudo apt-get install xinput-calibrator -y
+```
+
+Point the values recorded of Xinput calibrator to `99-ads7846-cal.conf` file by editing `/etc/X11/Xsession.d/xinput_calibrator_pointercal` and adding the following:
+```text
+#!/bin/sh
+PATH="/usr/bin:$PATH"
+BINARY="xinput_calibrator"
+CALFILE="/usr/share/X11/xorg.conf.d/99-ads7846-cal.conf"
+LOGFILE="/var/log/xinput_calibrator.pointercal.log"
+
+CALDATA=`grep -o 'Option[[:space:]]*"MinX".*' $CALFILE`
+if [ ! -z "$CALDATA" ] ; then
+    echo "Using calibration data stored in $CALFILE"
+    exit 0
+fi
+
+CALDATA=`DISPLAY=:0.0 $BINARY --output-type xorg.conf.d --device 'ADS7846 Touchscreen' | tee $LOGFILE | grep -i 'MinX\|MaxX\|MinY\|MaxY'`
+if [ ! -z "$CALDATA" ] ; then
+    sed -i "/MinX/d;/MaxX/d;/MinY/d;/MaxY/d;/EndSection/d" "$CALFILE"
+    cat >> "$CALFILE" <<EOD
+$CALDATA
+EndSection
+EOD
+    echo "Calibration data stored in $CALFILE (log in $LOGFILE)"
+fi
+EOF
+```
+
+Add touchpanel calibration to startup by editing `/etc/xdg/lxsession/LXDE-pi/autostart` and add the following line:
+```text
+sudo /bin/sh /etc/X11/Xsession.d/xinput_calibrator_pointercal
+```
+#### Update lightdm for Buster
+Raspbian Buster uses lightdm to control the X server. We need to edit the `/etc/lightdm/lightdm.conf` file and edit the comment our line:
+For TFT only:
+`xserver-layout=TFT`
+
+For HDMI only
+`xserver-layout=HDMI`
+
+For HDMI with TFT extended
+`xserver-layout=HDMITFT`
+
+#### Install fbcp
+This program is used to copy the primary framebuffer copy to a secondary framebuffer. Usually to copy the output of the HDMI of the Raspberry Pi to a TFT display.
+
+#### Activate the console
+If you are using Raspbian Lite or booting to the command line in the Deskop version then you will need to activate the console display by editing `/boot/cmdline.txt` and add the following at the end of the file:
+```text
+rootwait fbcon=map:10 fbcon=font:VGA8x8 consoleblank=0
+```
 
 #### Configure dtoverlay for the buttons
 
@@ -125,7 +283,7 @@ dtoverlay=gpio-key,gpio=27,keycode=28,label="KEY_ENTER"
 
 you can change the keycode and the label according to the [input-event-codes.h](https://github.com/torvalds/linux/blob/v4.12/include/uapi/linux/input-event-codes.h)
 
-You can also temporarily konfigure the keys at runtime without needing to alter the main configuration file by running a command like:
+You can also temporarily configure the keys at runtime without needing to alter the main configuration file by running a command like:
 
 ```bash
 sudo dtoverlay gpio-key gpio=13 keycode=59 label="KEY_F1"
@@ -157,61 +315,13 @@ Press CTRL^C to terminate.
 
 *Example `sudo dtoverlay gpio-key gpio=21 keycode=4 label="KEY_4" gpio_pull=0` 2:up 1:down 0:none*
 
-### Additional steps for older kernels
-
-Should you not wish to update bare in mind that the installation will still enable the screen but with a default rotation of 90° despite running `sudo Media-Centre-HAT/Software/media-center.sh 0`.
-In order to compensate this behaviour you will also need to change the installation script so that the touchscreen is not affected by this.
-
-Change the `function update_xorg()` function in `Media-Centre-HAT/Software/media-center.sh` to
-
-```text
-  if [ "${rotate}" == "0" ]; then
-    invertx="1"
-    inverty="0"
-    swapaxes="1"
-    tmatrix="0 -1 1 1 0 0 0 0 1"
-  fi
-  if [ "${rotate}" == "90" ]; then
-    invertx="1"
-    inverty="1"
-    swapaxes="0"
-    tmatrix="-1 0 1 0 -1 1 0 0 1"
-  fi
-  if [ "${rotate}" == "180" ]; then
-    invertx="0"
-    inverty="1"
-    swapaxes="1"
-    tmatrix="0 1 0 -1 0 1 0 0 1"
-  fi
-  if [ "${rotate}" == "270" ]; then
-    invertx="0"
-    inverty="0"
-    swapaxes="0"
-    tmatrix="1 0 0 0 1 0 0 0 1"
-  fi
-```  
-
-## Touchscreen calibration
-
-You can launch the xinput_calibrator directly via the GUI:
-
-![xinput_calibration](https://user-images.githubusercontent.com/16068311/36484231-77d98194-1710-11e8-8dc9-caaf13e0bd40.png "xinput_calibration")
-
-or from a terminal within the GUI by running:
-```bash
-xinput_calibrator
-```
-
-or from an SSH session:
-
-```bash
-DISPLAY=:0 xinput_calibrator
-```
-
 
 ## LIRC configuration
 
-As of Stretch and Lirc 0.9.4 part of the configuration is done via the DT overlays. As the MCH has an onboard eeprom with a DT Blob in it the OS will load the right module on startup and will configure the GPIO pins correctly.
+Before you begin to install and configure LIRC you need to make sure that the gpio-ir driver is loaded by adding the followig line to the `/boot/config.txt` file:
+```bash
+dtoverlay=gpio-ir,gpio_pin=5
+```
 
 At the command line install Lirc:
 ```bash

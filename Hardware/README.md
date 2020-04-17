@@ -5,7 +5,7 @@
 
 ### Buttons
 
-*Please note the the 5 ways joystick is alternative to the various push buttons SW1-5 and therefore is connected to the same GPIO pins on the Raspberry Pi.* 
+*Please note the the 5 ways joystick is alternative to the various push buttons SW1-5 and therefore is connected to the same GPIO pins on the Raspberry Pi.*
 
 * **SW1** GPIO13(PI33) up
 * **SW2** GPIO17(PI11) left
@@ -19,7 +19,7 @@
 ### Top of the board
 
 * **P3** External rotary encoder
- 
+
 ### Bottom of the board
 
 * **P2** External IR receiver and LED
@@ -40,7 +40,7 @@
     * **2-4** Internal IR LED
     * **4-6** External IR LED
 * **J4** ID EEPROM write protect disable jumper. Short to write to EEPROM.
-* **J5** Backlight control GPIO selection jumper, GPIO18(PI12) or GPIO12(PI32). The GPIO controlling the backlight defaults to GPIO12 so that the MCH can be used in conjuction with an audio board using I2S like in the case of JustBoom Audio, HiFiBerry, iQaudio, etc.
+* **J5** Backlight control GPIO selection jumper, GPIO18(PI12) or GPIO12(PI32). The GPIO controlling the backlight defaults to GPIO12 so that the MCH can be used in conjunction with an audio board using I2S like in the case of JustBoom Audio, HiFiBerry, iQaudio, etc.
 * **J6** Change ID EEPROM address from 0x50 to 0x51. Short or install a 2 pin header with a jumper to change address to 0x51.
 
 ## Pinout
@@ -196,13 +196,13 @@ R21, R22 and R23 should be populated if the HAT is connected through J2 40 FPC h
 ## Misc
 It is possible that EEPROM is not programmed, or is programmed with different DT which does not match GPIO selection jumper default configuration (GPIO12).
 
-The EEPROM shoud be programmed using dtbo for GPIO12 file from drive. They can try to switch gpio sel jumper to position 18 and see if it works. If not they can try to
+The EEPROM should be programmed using dtbo for GPIO12 file from drive. They can try to switch gpio sel jumper to position 18 and see if it works. If not they can try to
 enable device tree in config.txt by putting SD into PC, adding two lines:
 
 ```text
-dtoverlay=lirc-rpi,gpio_in_pin=5,gpio_out_pin=6
+dtoverlay=gpio-ir,gpio_pin=5
 dtoverlay=rpi-display,speed=32000000,rotate=90
 ```
 
 
-No additional pullups and resistors on bord for buttons/joystick/encoder, just ones enabled at gpio rpi ports. It should be configured as pullups for these, because button on schematic is connected to gnd. Placing additional resistors may constrain to use that gpios for other gpio functions like LEDs or some other output control...so we decided to omit these from the design, to make it more useful in a wider array of use cases. Because of this, you can use the button inputs to just connect to the various GPIO pins for other purposes as well.
+No additional pullups and resistors on board for buttons/joystick/encoder, just ones enabled at gpio rpi ports. It should be configured as pullups for these, because button on schematic is connected to gnd. Placing additional resistors may constrain to use that gpios for other gpio functions like LEDs or some other output control...so we decided to omit these from the design, to make it more useful in a wider array of use cases. Because of this, you can use the button inputs to just connect to the various GPIO pins for other purposes as well.

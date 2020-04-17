@@ -8,7 +8,7 @@ Take your entertainment with the Raspberry Pi to the next level with the Media C
 Just run the following script in a terminal window and the Media Center HAT will be automatically setup.
 ```bash
 # Run this line and the Media Center HAT will be setup and installed
-curl -sSL https://pisupp.ly/mediacentersoftware | sudo bash
+sudo su -c "bash <(wget -qO- https://pisupp.ly/mediacentersoftware)" root
 ```
 
 Please check the [software](https://github.com/PiSupply/Media-Center-HAT/blob/master/Software) or the [Hardware](https://github.com/PiSupply/Media-Center-HAT/blob/master/Hardware) sections for further information.
@@ -19,5 +19,4 @@ This software and product is based on and uses a number of open source libraries
 
 - [Notro FBTFT](https://github.com/notro/fbtft/wiki)
 - [Watterott RPi-Display](https://github.com/watterott/RPi-Display)
-- [Wiring Pi](http://wiringpi.com/)
 - [Lirc](http://www.lirc.org/)
