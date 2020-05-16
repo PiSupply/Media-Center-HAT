@@ -2,6 +2,8 @@
 
 ## Software Installation
 
+**NOTE:** When using the Media Center HAT with the PiJuice HAT you will need to change the ID EEPROM address on the PiJuice to 0x52 otherwise both HAT's will conflict with each other and the Media Center HAT will not load the DT overlay file.
+
 ### Automated process
 
 Just run the following script in a terminal window and the Media Center HAT will be automatically setup.

@@ -168,7 +168,7 @@ TP
 
 ![Main ICs](https://user-images.githubusercontent.com/16068311/36383446-10b64c82-1584-11e8-9f4b-33c080356dd0.png "Main ICs")
 
-The picture above highlights the main ICs used on PiJuice. Links to the various datasheets have been provided in line with the description.
+The picture above highlights the main ICs used on the Media Center HAT. Links to the various datasheets have been provided in line with the description.
 
 1. **Display** [MI0283QT](https://github.com/PiSupply/Media-Center-HAT/blob/master/Hardware/Datasheets/MI0283QT-11_Ver1.4.pdf) 2.8" TFT Display(320x240)with Touchpanel.
 2. **Touch screen controller** [ADS7846](https://github.com/PiSupply/Media-Center-HAT/blob/master/Hardware/Datasheets/ads7846.pdf) 4-wire touch screen controller.
