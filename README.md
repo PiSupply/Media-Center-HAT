@@ -22,7 +22,7 @@ This software and product is based on and uses a number of open source libraries
 - [Watterott RPi-Display](https://github.com/watterott/RPi-Display)
 - [Lirc](http://www.lirc.org/)
 
-# Licence
+# License
 
 ![Creative Commons Licence](https://user-images.githubusercontent.com/3359418/82903405-ce948600-9f58-11ea-8125-b452a79a0b6b.png)
 
