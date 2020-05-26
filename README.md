@@ -20,3 +20,9 @@ This software and product is based on and uses a number of open source libraries
 - [Notro FBTFT](https://github.com/notro/fbtft/wiki)
 - [Watterott RPi-Display](https://github.com/watterott/RPi-Display)
 - [Lirc](http://www.lirc.org/)
+
+# Licence
+
+![Creative Commons Licence](https://user-images.githubusercontent.com/3359418/82903405-ce948600-9f58-11ea-8125-b452a79a0b6b.png)
+
+This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
