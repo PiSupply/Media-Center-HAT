@@ -1,0 +1,42 @@
+Designator Footprint               Mid X         Mid Y         Ref X         Ref Y         Pad X         Pad Y TB      Rotation Comment        
+
+R26        R_0603               49.525mm      38.125mm      49.525mm      38.125mm      49.525mm     37.3757mm  B         90.00 Resistor       
+R25        R_0603               60.525mm      43.175mm      60.525mm      43.175mm      60.525mm     42.4257mm  B         90.00 Resistor       
+J5         HEADER_SM_P50_N4       33.75mm      14.375mm       33.75mm      14.375mm      34.385mm      12.425mm  B        180.00 EMCON_HEADER_2x2
+R24        R_0603                 53.4mm       21.45mm        53.4mm       21.45mm        53.4mm     20.7007mm  B         90.00 Resistor       
+J3         HEADER_SM_P50_N6      60.575mm        23.3mm      60.575mm        23.3mm      59.305mm       25.25mm  B        360.00 EMCON_HEADER_2x3
+J2         CON_FFC_N40_P05_FP520Q-40SR04       48.25mm      14.925mm        38.5mm        16.5mm        38.5mm        16.5mm  B        180.00 CON_FFC_40     
+C1         CCER_0603              30.6mm       15.95mm        30.6mm       15.95mm     31.3493mm       15.95mm  B        180.00 Ceramic Capacitor
+C2         CCER_0603            61.525mm       5.075mm      61.525mm       5.075mm      61.525mm      5.8243mm  B        270.00 Ceramic Capacitor
+C3         CCER_0603              61.5mm       8.675mm        61.5mm       8.675mm        61.5mm      7.9257mm  B         90.00 Ceramic Capacitor
+C4         CCER_0603            24.725mm       28.15mm      24.725mm       28.15mm     25.4743mm       28.15mm  B        180.00 Ceramic Capacitor
+C5         CCER_0603              45.4mm      41.625mm        45.4mm      41.625mm     46.1493mm      41.625mm  B        180.00 Ceramic Capacitor
+C6         CCER_0603            28.575mm      36.775mm      28.575mm      36.775mm     29.3243mm      36.775mm  B        180.00 Ceramic Capacitor
+C7         CCER_0603           31.3743mm       36.75mm     31.3743mm       36.75mm     32.1236mm       36.75mm  B        180.00 Ceramic Capacitor
+C8         CCER_0603            39.475mm       25.55mm      39.475mm       25.55mm      39.475mm     26.2993mm  B        270.00 Ceramic Capacitor
+C9         CCER_0603            31.975mm      25.525mm      31.975mm      25.525mm      31.975mm     26.2743mm  B        270.00 Ceramic Capacitor
+D1         LED_0805             77.325mm       2.625mm      77.325mm       2.625mm      77.325mm         3.8mm  T        270.00 LED Diode      
+P1         HDR2X20_H15_DIP3.5_4UCON          29mm          49mm        4.87mm       50.27mm        4.87mm       50.27mm  B          0.00 EMCON_RPI_B+HAT_HEADER_2x20
+Q1         SOT23-3_GSD          30.459mm      12.175mm      30.459mm      12.175mm      29.475mm      12.175mm  B        180.00 QNMOS          
+Q2         SOT23-3_GSD          64.475mm        15.9mm      64.475mm        15.9mm      63.491mm        15.9mm  B        180.00 QNMOS          
+R1         R_0603               30.675mm      14.625mm      30.675mm      14.625mm     29.9257mm      14.625mm  B        360.00 Resistor       
+R2         R_0603                   26mm       11.15mm          26mm       11.15mm     25.2507mm       11.15mm  B        360.00 Resistor       
+R3         R_0603               26.025mm      12.975mm      26.025mm      12.975mm     26.7743mm      12.975mm  B        180.00 Resistor       
+R4         R_0603                25.95mm        14.9mm       25.95mm        14.9mm     26.6993mm        14.9mm  B        180.00 Resistor       
+R6         R_0603               25.925mm      16.775mm      25.925mm      16.775mm     26.6743mm      16.775mm  B        180.00 Resistor       
+R8         R_0603              25.5993mm      21.325mm     25.5993mm      21.325mm     26.3486mm      21.325mm  B        180.00 Resistor       
+R11        R_0603               28.825mm        19.1mm      28.825mm        19.1mm     29.5743mm        19.1mm  B        180.00 Resistor       
+R12        R_0603               66.775mm       11.85mm      66.775mm       11.85mm      66.775mm     12.5993mm  B        270.00 Resistor       
+R13        R_0603                 63.8mm      11.925mm        63.8mm      11.925mm        63.8mm     11.1757mm  B         90.00 Resistor       
+R14        R_0603               63.825mm       8.725mm      63.825mm       8.725mm      63.825mm      7.9757mm  B         90.00 Resistor       
+R15        R_0603                26.95mm      27.325mm       26.95mm      27.325mm       26.95mm     26.5757mm  B         90.00 Resistor       
+R16        R_0603                33.15mm      34.325mm       33.15mm      34.325mm       33.15mm     35.0743mm  B        270.00 Resistor       
+R17        R_0603               39.475mm          39mm      39.475mm          39mm      39.475mm     38.2507mm  B         90.00 Resistor       
+R18        R_0603              36.7063mm     39.0134mm     36.7063mm     39.0134mm     36.7063mm     38.2641mm  B         90.00 Resistor       
+R19        R_0603               38.075mm      38.975mm      38.075mm      38.975mm      38.075mm     38.2257mm  B         90.00 Resistor       
+U1         SSOP-16_P0635        27.625mm        32.2mm      27.625mm        32.2mm      24.925mm     29.9775mm  B        360.00 INT_ADS7846    
+U2         SOT23-5_DBV          35.725mm      25.425mm      35.725mm      25.425mm      37.075mm      26.375mm  B        180.00 POWDCDC_SOT23  
+U3         SOIC127P600X175-8N      44.925mm      37.175mm      44.925mm      37.175mm      47.325mm       39.08mm  B        180.00 Ceramic Capacitor
+U4         TSOP-75XXXWTT_VISHAY       72.47mm      -0.625mm       72.47mm       -1.55mm      74.375mm      -0.625mm  T         90.00 IRRC_TSOP75X   
+J1         CON_FFC_N50_P05_62684-50210ALF       19.95mm        21.6mm        21.5mm        9.35mm        21.5mm        9.35mm  B         90.00 CON_FFC_50     
+

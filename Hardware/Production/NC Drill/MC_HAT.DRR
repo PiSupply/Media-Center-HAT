@@ -1,0 +1,22 @@
+---------------------------------------------------------------------------
+NCDrill File Report For: MCM_HAT.PcbDoc   17.1.2018.  10.23.57
+---------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : MC_HAT.TXT
+
+Tool         Hole Size           Hole Type     Hole Count Plated       Tool Travel
+---------------------------------------------------------------------------
+T1        0.3mm (11.811mil)        Round          130              519.74 mm (20.46 Inch)
+T2        0.9mm (35.433mil)        Round          9                53.04 mm (2.09 Inch)
+T3        1mm (39.37mil)           Round          2                10.30 mm (0.41 Inch)
+T4        1.02mm (40.157mil)       Round          40               132.08 mm (5.20 Inch)
+T5        1.1mm (43.307mil)        Round          20               114.97 mm (4.53 Inch)
+T6        1.2mm (47.244mil)        Round          4                27.10 mm (1.07 Inch)
+T7        0.3mm (11.811mil)        Round          42        NPTH   223.91 mm (8.82 Inch)
+T8        1mm (39.37mil)           Round          4         NPTH   182.54 mm (7.19 Inch)
+T9        2.75mm (108.268mil)      Round          8         NPTH   242.53 mm (9.55 Inch)
+---------------------------------------------------------------------------
+Totals                                            259              1506.21 mm (59.30 Inch)
+
+Total Processing Time (hh:mm:ss) : 00.00.00

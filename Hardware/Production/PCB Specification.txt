@@ -1,0 +1,43 @@
+Board properties:
+	2 Layers Standard Stackup
+	Width: 85 mm
+	Height: 70.5 mm
+	Finished Thickness: 2 mm
+
+Layers:
+	Silkscreen top
+	Top Solder mask
+	Copper Top - 35um
+	FR4 ~ 1.9 mm
+	Copper Bottom - 35um
+	Bottom Solder mask
+	Silkscreen bottom
+	
+Smallest structures:
+	Track width: 0.25 mm
+	Spacing: 0.25 mm
+	Hole size: 0.3 mm
+	Via Pad size: 0.8 mm
+
+Solder mask colour: Red
+Silk screen colour: White
+
+FR4 TG >=135 °C
+ENIG finish
+
+PCB Manufacturing files:
+
+FILE NAME 		DESCRIPTION			FILE TYPE
+
+TopLayer.GTL		Top Copper Layer		Gerber
+BottomLayer.GBL		Bottom Copper Layer		Gerber
+SolderMaskTop.GTS	Solder mask top side		Gerber
+SolderMaskBottom.GBS	Solder mask bottom side		Gerber
+SilkscreenTop.GTO	Silkscreen top side		Gerber
+SilkscreenBottom.GBO	Silkscreen Bottom side		Gerber
+DrillDrawing.GD1	Drill Drawing Plots		Gerber
+DrillGuide.GG1		Drill Guide Plots		Gerber
+NcDrillRoundHoles.TXT	NC Drill for round holes	Text
+NcDrillSlotHoles.TXT	NC Drill for slot holes		Text
+Keepout.GKO		Board Cut definition		Gerber
+Aperture.apr		Aperture definition		
