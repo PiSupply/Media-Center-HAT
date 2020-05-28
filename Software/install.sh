@@ -335,14 +335,14 @@ if [[ -d /usr/share/X11/xorg.conf.d ]]; then
       if [[ "$value" == 1 ]] ; then
         sed -i 's/#xserver-layout=/xserver-layout=TFT/g' /etc/lightdm/lightdm.conf
         sed -i "/xserver-layout=*/c xserver-layout=TFT" /etc/lightdm/lightdm.conf
-        sed -i "55s/fb1/fb0/g" /usr/share/X11/xorg.conf.d/99-fbdev.conf
+        #sed -i "55s/fb1/fb0/g" /usr/share/X11/xorg.conf.d/99-fbdev.conf
       elif [[ "$value" == 2 ]] ; then
         sed -i 's/#xserver-layout=/xserver-layout=HDMI/g' /etc/lightdm/lightdm.conf
         sed -i "/xserver-layout=*/c xserver-layout=HDMI" /etc/lightdm/lightdm.conf
       elif [[ "$value" == 3 ]] ; then
         sed -i 's/#xserver-layout=/xserver-layout=HDMITFT/g' /etc/lightdm/lightdm.conf
         sed -i "/xserver-layout=*/c xserver-layout=HDMITFT" /etc/lightdm/lightdm.conf
-        sed -i "55s/fb0/fb1/g" /usr/share/X11/xorg.conf.d/99-fbdev.conf
+        #sed -i "55s/fb0/fb1/g" /usr/share/X11/xorg.conf.d/99-fbdev.conf
       fi
       break
     fi
