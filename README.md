@@ -30,5 +30,5 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 
 ## Open Source Hardware
 
-We are proud to say that the Media Center HAT is certified by the Open Source Hardware Association with UID number UK000009. Our certification mark is below:
-![OSHW_mark_UK000009](https://user-images.githubusercontent.com/3359418/84285027-da757000-ab34-11ea-8a26-dd151b2596de.png)
+We are proud to say that the Media Center HAT is certified by the [Open Source Hardware Association](https://certification.oshwa.org/uk000009.html) with UID number UK000009. Our certification mark is below:
+![image](https://user-images.githubusercontent.com/3359418/84285729-b9f9e580-ab35-11ea-80d2-5e4e6344332b.png
